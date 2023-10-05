@@ -1,0 +1,16 @@
+<div id="version-container">
+	<div id="side-list">
+		<a *ngFor="let item of versions" routerLink="/v/{{item.signature}}">
+			<div class="side-element" [ngClass]="{'active-element': item.signature === active}">
+				<p>
+					{{item.name}}
+				</p>
+			</div>
+		</a>
+	</div>
+	<div id="md-container">
+		<markdown ngPreserveWhitespaces
+		[data]="markdown">
+		</markdown>
+	</div>
+</div>
