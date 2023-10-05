@@ -81,7 +81,7 @@ export class ChangelogComponent {
         let md = "";
         let first = true;
         
-        for(const index in results) {
+        for(let index = results.length - 1; index >= 0 ; --index) {
           const item = results[index];
           const cv = objectsList[index];
           if(!first) {

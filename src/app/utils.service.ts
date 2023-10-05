@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, map, tap, throwError, timeout } from 'rxjs';
+import { Observable, map, tap, throwError, timeout } from 'rxjs';
 
 class TimeoutError extends Error {
   constructor() {
@@ -28,8 +28,8 @@ interface Realm {
 })
 
 export class UtilsService {
-  manifest?: ChangelogVersion[];
-  cache: Map<string, string> = new Map<string, string>();
+  private manifest?: ChangelogVersion[];
+  private cache: Map<string, string> = new Map<string, string>();
 
   constructor(
     private http: HttpClient
@@ -133,7 +133,13 @@ export class UtilsService {
       });
     }
 
-    return this.http.get<Array<string>>("assets/changelogs/manifest.json").pipe(
+    return this.http.get<Array<string>>("assets/changelogs/manifest.json", {
+      headers: new HttpHeaders({
+        "Cache-Control": "no-cache, no-store, must-revalidate, post-check=0, pre-check=0",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }),
+    }).pipe(
       timeout({
         each: 5000,
         with: () => throwError(() => new TimeoutError())
