@@ -9,6 +9,18 @@ import { FullListComponent } from './full-list/full-list.component';
 import { HomeComponent } from './home/home.component';
 import { ChangelogComponent } from './changelog/changelog.component';
 
+function markedOptionsFactory(): MarkedOptions {
+	const renderer = new MarkedRenderer()
+
+	renderer.codespan = (text: string) => {
+		return `<code class="inline-code">${text}</code>`
+	}
+
+	return {
+		renderer: renderer,
+	}
+}
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -22,6 +34,10 @@ import { ChangelogComponent } from './changelog/changelog.component';
 		HttpClientModule,
 		MarkdownModule.forRoot({
 			loader: HttpClient,
+			markedOptions: {
+				provide: MarkedOptions,
+				useFactory: markedOptionsFactory
+			}
 		}),
 	],
 	providers: [],
