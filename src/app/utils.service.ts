@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap, throwError, timeout } from 'rxjs';
 
-class TimeoutError extends Error {
+export class TimeoutError extends Error {
   constructor() {
     super("Request timed out!");
     this.name = "TimeoutError";

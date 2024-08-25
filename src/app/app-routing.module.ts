@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'all', component: FullListComponent },
   { path: 'home', component: HomeComponent },
   { path: 'v/:ver', component: ChangelogComponent },
+  { path: ':ver', component: HomeComponent },
 ];
 
 @NgModule({

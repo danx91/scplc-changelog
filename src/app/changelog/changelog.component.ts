@@ -42,12 +42,6 @@ export class ChangelogComponent {
     if(id === "latest") {
       obj = this.manifest[0];
     } else if(id !== "next") {
-      /*for(const item of this.manifest) {
-        if(item.signature === id) {
-          obj = item;
-          break;
-        }
-      }*/
       obj = this.utils.parseVersion(id);
     }
 
