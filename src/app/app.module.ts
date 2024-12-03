@@ -16,6 +16,21 @@ function markedOptionsFactory(): MarkedOptions {
 		return `<code class="inline-code">${text}</code>`
 	}
 
+	renderer.link = (href: string, title: string, text: string) => {
+		console.log(href, title, text)
+		let tag = `<a href=${href}`
+
+		if(title == "_blank") {
+			tag += ` target="_blank"`
+		} else if(title) {
+			tag += ` title=${title}`
+		}
+
+		tag += `>${text}</a>`
+
+		return tag
+	}
+
 	return {
 		renderer: renderer,
 	}
