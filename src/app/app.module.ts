@@ -17,7 +17,6 @@ function markedOptionsFactory(): MarkedOptions {
 	}
 
 	renderer.link = (href: string, title: string, text: string) => {
-		console.log(href, title, text)
 		let tag = `<a href=${href}`
 
 		if(title == "_blank") {
